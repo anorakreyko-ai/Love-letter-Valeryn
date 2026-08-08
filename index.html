@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta para mi Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Georgia', serif;
+            background-color: #0a0a0a;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+        }
+
+        .card-container {
+            position: relative;
+            width: 100%;
+            min-height: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ============================================ */
+        /* ===== FONDO DE LA CARTA ===== */
+        /* ============================================ */
+        /* ★★★ IMAGEN DE FONDO (YA INTEGRADA) ★★★ */
+        .fondo-carta {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/7tmN0x8k/thumb-1920-836774.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* ============================================ */
+        /* ===== LIQUID GLASS ===== */
+        /* ============================================ */
+        .liquid-glass {
+            position: relative;
+            margin: 20px;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.60);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                inset 0 0 80px rgba(0, 0, 0, 0.3),
+                0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 45px 40px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Efecto de brillo en movimiento */
+        .liquid-glass::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at 50% 50%,
+                rgba(255, 255, 255, 0.04) 0%,
+                transparent 60%
+            );
+            animation: shimmer 10s ease-in-out infinite;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                transform: translate(-30%, -30%) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(30%, -30%) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(30%, 30%) scale(1);
+                opacity: 0.3;
+            }
+            75% {
+                transform: translate(-30%, 30%) scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        /* Borde brillante */
+        .liquid-glass::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 22px;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.12),
+                rgba(255, 255, 255, 0.03)
+            );
+            background-size: 300% 300%;
+            animation: borderGlow 8s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ===== TÍTULO ===== */
+        .titulo {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        /* ===== CONTENIDO DE LA CARTA ===== */
+        .contenido {
+            flex: 1;
+            position: relative;
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            padding: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Georgia', serif;
+            text-align: justify;
+            max-height: 550px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* Scrollbar personalizada */
+        .contenido::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .contenido::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .contenido::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        /* ===== FECHA ===== */
+        .fecha {
+            margin-top: 25px;
+            text-align: right;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .liquid-glass {
+                padding: 30px 25px;
+                margin: 15px;
+                min-height: 400px;
+            }
+
+            .titulo {
+                font-size: 1.5rem;
+                margin-bottom: 18px;
+            }
+
+            .contenido {
+                font-size: 0.95rem;
+                line-height: 1.8;
+                max-height: 450px;
+            }
+
+            .card-container {
+                min-height: 500px;
+            }
+
+            .fecha {
+                font-size: 0.8rem;
+                padding-top: 15px;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .liquid-glass {
+                padding: 22px 18px;
+                margin: 10px;
+                min-height: 350px;
+            }
+
+            .titulo {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                letter-spacing: 2px;
+            }
+
+            .contenido {
+                font-size: 0.85rem;
+                line-height: 1.7;
+                max-height: 400px;
+            }
+
+            .fecha {
+                font-size: 0.75rem;
+                padding-top: 12px;
+                margin-top: 15px;
+            }
+        }
+
+        /* Efecto de entrada suave */
+        .liquid-glass {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-container">
+
+            <!-- ========================================================== -->
+            <!-- =====  FONDO DE LA CARTA  =====                            -->
+            <!-- ========================================================== -->
+            <!-- ★★★ IMAGEN DE FONDO (YA INTEGRADA) ★★★                   -->
+            <div class="fondo-carta"></div>
+
+            <!-- ========================================================== -->
+            <!-- =====  LIQUID GLASS  =====                                 -->
+            <!-- ========================================================== -->
+            <div class="liquid-glass">
+                
+                <!-- TÍTULO -->
+                <h2 class="titulo">✦ Para mi Amor ✦</h2>
+                
+                <!-- ====================================================== -->
+                <!-- ★★★ CARTA COMPLETA ★★★                              -->
+                <!-- ====================================================== -->
+                <div class="contenido">
+Mami,
+
+Quiero que sepas algo, y quiero decírtelo de la manera más clara y sincera que pueda: te amo. Y cuando digo que te amo, no es una frase ligera ni un cumplido más. Es un sentimiento profundo que llevo conmigo cada día, que me hace pensar en ti a cada instante y que me llena de una felicidad que no sabía que existía.
+
+Te amo muchísimo. Más de lo que las palabras alcanzan a expresar, pero aún así quiero intentarlo. Eres la persona que ocupa mis pensamientos cuando despierto y la última en ellos antes de dormir. No hay momento en que no agradezca tenerte en mi vida.
+
+Y precisamente porque te amo tanto, quiero que sepas que voy a hacer todo bien por ti. No prometo ser perfecto, porque no lo soy, pero sí te prometo esforzarme cada día para ser la mejor versión de mí mismo. Voy a cuidarte, a escucharte, a respetarte y a estar para ti en las buenas y en las que no lo sean tanto. Quiero construir algo sólido contigo, algo que valga la pena, y voy a poner todo mi empeño en que así sea.
+
+No sé qué nos deparará el futuro, pero sé que, pase lo que pase, quiero recorrer este camino a tu lado. Quiero hacerte feliz, quiero verte sonreír y quiero que sepas que siempre, siempre, puedes contar conmigo.
+
+Te amo, y eso no va a cambiar.
+                </div>
+                <!-- ====================================================== -->
+                
+                <!-- FIRMA -->
+                <div class="fecha">Con todo mi corazón, Antonio</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        console.log('✨ Carta de amor cargada correctamente');
+        console.log('❤️  Para: Mami');
+        console.log('✍️  De: Antonio');
+        console.log('🖼️  Fondo: https://i.ibb.co/7tmN0x8k/thumb-1920-836774.jpg');
+    </script>
+</body>
+</html>
